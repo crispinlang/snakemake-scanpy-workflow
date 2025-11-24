@@ -1,0 +1,19 @@
+# macOS system files
+.DS_Store
+**/.DS_Store
+
+# Snakemake cache
+.snakemake/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# VS Code
+.vscode/
+
+# Output data
+results/
+
+# Raw data (keep local only, don't track in git)
+data/

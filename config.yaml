@@ -1,0 +1,10 @@
+samples:
+  - pbmc3k
+
+input_dir: "data"
+output_dir: "results"
+
+params:
+  min_genes: 200
+  max_genes: 6000
+  max_mt: 5

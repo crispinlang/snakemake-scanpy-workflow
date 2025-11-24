@@ -1,0 +1,14 @@
+channels:
+  - conda-forge
+  - bioconda
+
+dependencies:
+  - python=3.12
+  - scanpy
+  - anndata
+  - matplotlib
+  - seaborn
+  - pip
+  - pip:
+      - python-igraph
+      - leidenalg
