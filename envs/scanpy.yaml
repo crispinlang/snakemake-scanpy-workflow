@@ -1,14 +1,15 @@
+# envs/scanpy.yaml
 channels:
   - conda-forge
   - bioconda
+  - defaults
 
 dependencies:
-  - python=3.12
-  - scanpy
-  - anndata
-  - matplotlib
-  - seaborn
-  - pip
-  - pip:
-      - python-igraph
-      - leidenalg
+  - python=3.10
+  - scanpy=1.9.3
+  - anndata=0.9.2
+  - numpy<2
+
+  - matplotlib-base
+  - python-igraph
+  - leidenalg
