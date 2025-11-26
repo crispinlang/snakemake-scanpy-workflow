@@ -15,7 +15,7 @@ The pipeline is ready to run on any system with **Miniforge/Mambaforge + Snakema
 
 ---
 
-# 📁 Project Structure
+# Project Structure
 
 snakemake_project/
 ├── Snakefile                   # Core Snakemake workflow
@@ -31,7 +31,7 @@ snakemake_project/
 
 ---
 
-# ⚠️ Data Not Included (Important)
+# ️ Data Not Included (Important)
 
 The original 10x Genomics **PBMC 3k** dataset is **not included** due to size restrictions and good repository practices.
 
@@ -50,7 +50,7 @@ The directory **must** contain:
 
 ---
 
-# 🧬 Pipeline Overview
+# Pipeline Overview
 
 The workflow includes two main rules:
 
@@ -71,27 +71,30 @@ The workflow includes two main rules:
 - Saves:
   - `results.h5ad`
   - `umap.png` (colored by Leiden clusters)
+- The parameters (e.g., QC thresholds) are set in `config.yaml`.
 
-The parameters (e.g., QC thresholds) are set in `config.yaml`.
+### 3. `further python analysis`  
+- Identify target genes using a heatmap and dendrogram
+- plot the target genes according on a heatmap to identify the best fitting target genes
+- Does not save files automatically to avoid cluttering
 
 ---
 
-# 🛠️ Requirements
-
+#️ Requirements
 Your system must have:
 
-### ✔ Miniforge / Mambaforge (recommended)
+### Miniforge
 Install via Homebrew (macOS):
 
 ```bash
 brew install miniforge
+```
 
 ---
 
 # How to run the pipeline:
-
 1. Clone the Repository
-- git clone https://github.com/<your-username>/snakemake-scanpy-workflow.git
+- git clone https://github.com/<crispinlang>/snakemake-scanpy-workflow.git
 - cd snakemake-scanpy-workflow
 
 2. Install Snakemake Environment

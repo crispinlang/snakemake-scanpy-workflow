@@ -14,10 +14,6 @@ print(f"Read AnnData for analysis: {adata.n_obs} cells, {adata.n_vars} genes")
 adata = sc.read_h5ad(input_file)
 print(f"Read AnnData for analysis: {adata.n_obs} cells, {adata.n_vars} genes")
 
-# --- FIX: ensure log1p metadata exists so Scanpy doesn't crash ---
-# Some Scanpy/anndata version combinations expect adata.uns["log1p"]["base"]
-# to exist (even if it's just None). Our preprocess step already did log1p,
-# but the metadata might not have been set correctly, so we enforce it here.
 adata.uns["log1p"] = {"base": None}
 
 # 2. Identify highly variable genes (HVGs)
@@ -40,18 +36,16 @@ print("PCA complete. Explained variance of first 5 PCs:", adata.uns['pca']['vari
 
 # 5. Compute the k-nearest neighbors graph (for clustering/UMAP)
 sc.pp.neighbors(adata, n_neighbors=10, n_pcs=40)
-# n_neighbors is the size of local neighborhood (graph connectivity), and n_pcs is how many PCs to use [oai_citation:15‡training.galaxyproject.org](https://training.galaxyproject.org/training-material/topics/single-cell/tutorials/scrna-scanpy-pbmc3k/tutorial.html#:~:text=,scaling%2C%20PCA%20and%20KNN%20graph).
-# (Here we arbitrarily use 40 PCs; one could also decide based on variance or use fewer for small data.)
 
 # 6. Clustering – use the Leiden algorithm (graph-based community detection)
-sc.tl.leiden(adata, resolution=0.5)  # resolution controls how many clusters to find (higher -> more clusters)
+sc.tl.leiden(adata, resolution=0.2)  # resolution controls how many clusters to find (higher -> more clusters)
 # The resulting cluster labels are stored in adata.obs['leiden']
 num_clusters = adata.obs['leiden'].nunique()
 print(f"Leiden clustering found {num_clusters} clusters.")
 
 # 7. UMAP dimensionality reduction
 sc.tl.umap(adata)
-# The UMAP coordinates are added to adata.obsm['X_umap'] [oai_citation:16‡training.galaxyproject.org](https://training.galaxyproject.org/training-material/topics/single-cell/tutorials/scrna-scanpy-pbmc3k/tutorial.html#:~:text=,9%2Bgalaxy0%29%20with%20the%20following%20parameters) [oai_citation:17‡training.galaxyproject.org](https://training.galaxyproject.org/training-material/topics/single-cell/tutorials/scrna-scanpy-pbmc3k/tutorial.html#:~:text=,scaling%2C%20PCA%2C%20KNN%20graph%2C%20UMAP).
+# The UMAP coordinates are added to adata.obsm['X_umap']
 print("Computed UMAP embedding for visualization.")
 
 # 8. Plot UMAP with clusters

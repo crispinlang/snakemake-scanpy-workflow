@@ -1,3 +1,4 @@
+
 # config.yaml
 samples: ["pbmc3k"]
 
@@ -7,5 +8,3 @@ min_cells: 3       # filter out genes expressed in fewer than 3 cells
 
 # Feature selection
 n_top_genes: 2000  # number of highly variable genes to keep for PCA/UMAP
-
-# (Additional params can be added here, e.g., normalization target count, clustering resolution, etc.)

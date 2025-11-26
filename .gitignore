@@ -17,6 +17,10 @@ __pycache__/
 
 # Output data
 results/
+figures/
 
 # Raw data (keep local only, don't track in git)
 data/
+
+# presentation trash file
+~$Presentation1.pptx
